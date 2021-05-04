@@ -9,6 +9,14 @@ list(APPEND EXAMPLES
     udp_proxy_server
 )
 
+set(topic_demo_DIR "/home/lyh/catkin_ws/src/ROS-Academy-for-Beginners-melodic/topic_demo/build/devel/lib")
+set(topic_demo_include_DIR "/home/lyh/catkin_ws/src/ROS-Academy-for-Beginners-melodic/topic_demo/src")
+include_directories(${topic_demo_include_DIR})
+link_directories(${topic_demo_DIR})
+set(topic_demo_include_DIR "/home/lyh/catkin_ws/src/ROS-Academy-for-Beginners-melodic/topic_demo/include")
+include_directories(${topic_demo_include_DIR})
+
+
 include_directories(.. ../base ../util ../event)
 
 add_executable(hloop_test hloop_test.c)
@@ -54,7 +62,7 @@ if(WITH_HTTP_SERVER)
     # httpd
     aux_source_directory(httpd HTTPD_SRCS)
     add_executable(httpd ${HTTPD_SRCS})
-    target_link_libraries(httpd hv)
+    target_link_libraries(httpd hv topic_demo)
 
     # http_server_test
     add_executable(http_server_test http_server_test.cpp)

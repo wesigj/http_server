@@ -5,6 +5,9 @@
 
 #include "handler.h"
 
+#include "listener.h"
+
+
 class Router {
 public:
     static void Register(HttpService& router) {
@@ -14,8 +17,20 @@ public:
 
         // curl -v http://ip:port/ping
         router.GET("/ping", [](HttpRequest* req, HttpResponse* resp) {
-            return resp->String("pong");
+            int a = twice(5);
+            return resp->String(hv::to_string(a));
+            // return resp->String("pong");
         });
+
+
+
+        // curl -v http://ip:port/ping
+        router.GET("/api/v1/vehicles/robotState", [](HttpRequest* req, HttpResponse* resp) {
+            int a = twice(5);
+            return resp->String(hv::to_string(a));
+            // return resp->String("pong");
+        });
+
 
         // curl -v http://ip:port/data
         router.GET("/data", [](HttpRequest* req, HttpResponse* resp) {
